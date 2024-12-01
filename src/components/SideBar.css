@@ -1,0 +1,17 @@
+a {
+  text-decoration: none;
+  padding: 12px 0;
+  position: relative;
+  text-align: right;
+}
+a.active::before {
+  content: "";
+  width: 9px;
+  height: 46px;
+  display: block;
+  background-color: rgb(72, 128, 255);
+  position: absolute;
+  left: -64px;
+  top: 0;
+  border-radius: 0 4px 4px 0;
+}
