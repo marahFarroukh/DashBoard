@@ -39,7 +39,10 @@ function CreateForm({ type }: { type?: string }) {
             autoClose: 5000,
           });
         })
-        .catch((error) => console.error(error));
+        .catch((error) => {
+          console.error(error);
+          toast.error("Failed to fetch data!");
+        });
     }
   }, [type, params.id, token]);
 
@@ -67,7 +70,7 @@ function CreateForm({ type }: { type?: string }) {
         image instanceof File ? image : new Blob([image])
       );
     }
-    formData.append("_method", type === "update" ? "put" : "post");
+    formData.append("_method", type === "update" ? "PUT" : "POST");
 
     const url =
       type === "update"
@@ -76,7 +79,7 @@ function CreateForm({ type }: { type?: string }) {
 
     const request =
       type === "update"
-        ? axios.put(url, formData, {
+        ? axios.post(url, formData, {
             headers: {
               "Content-Type": "multipart/form-data",
               Authorization: `Bearer ${token}`,
